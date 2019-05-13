@@ -1,0 +1,37 @@
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Usuario</title>
+		<meta charset="UTF-8">
+	</head>
+	
+		<div>
+			<form action="cadastrarusuario" th:object="${usuarioobj}" method="POST" class="col s12">
+				<div class="row">
+					<div class="input-field col s6">
+						<label for="codUsuario">Código:</label>
+						<input name="codUsuario" type="text" th:field="*{codUsuario}" readonly="readonly">
+					</div>
+					
+					<div class="input-field col s12">
+						<label for="email" class="active">Email: </label> 
+						<input name="email" th:field="*{email}" class="validate">
+					</div>
+					
+					<div class="input-field col s6">
+						<label for="senha" class="active">Senha: </label> 
+						<input name="senha" th:field="*{senha}" class="validate">
+						
+						<label for="confSenha" class="active">Confirmação Senha: </label> 
+						<input name="confSenha" th:field="*{confSenha}" class="validate">
+					</div>
+					
+					<div class="input-field col s6">
+						<input type="submit" title="cadastrar">
+					</div>
+				</div>
+			</form>
+		</div>
+	<body>
+	</body>
+</html>

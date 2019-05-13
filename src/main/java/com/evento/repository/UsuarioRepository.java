@@ -4,10 +4,10 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.evento.model.Evento;
+import com.evento.model.Usuario;
 
 @Repository
 @Transactional
-public interface EventoRepository extends CrudRepository<Evento, Long>{
+public interface UsuarioRepository extends CrudRepository<Usuario, Long>{
 
 }
