@@ -2,7 +2,9 @@ package com.evento.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.evento.model.Usuario;
@@ -14,6 +16,19 @@ public class UsuarioController {
 	
 	@Autowired
 	UsuarioRepository usuarioRepository;
+	
+	@GetMapping("/login")
+	public ModelAndView index() {
+		ModelAndView modelAndView = new ModelAndView("index");
+		return modelAndView;
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value="**/telas/usuario")
+	public ModelAndView formCadastro() {
+		ModelAndView modelAndView = new ModelAndView("/telas/usuario");
+		return modelAndView;
+		
+	}
 	
 	@RequestMapping("/templates/telas/usuario")
 	public ModelAndView cadastroUsuario(Usuario usuario) {
