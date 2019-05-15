@@ -18,25 +18,28 @@ public class UsuarioController {
 	UsuarioRepository usuarioRepository;
 	
 	@GetMapping("/login")
-	public ModelAndView index() {
+	public ModelAndView index(Usuario usuario) {
 		ModelAndView modelAndView = new ModelAndView("index");
 		return modelAndView;
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value="**/telas/usuario")
+	@RequestMapping(method = RequestMethod.GET, value="/telas/usuario")
 	public ModelAndView formCadastro() {
 		ModelAndView modelAndView = new ModelAndView("/telas/usuario");
+		modelAndView.addObject("usuarioobj", new Usuario());
 		return modelAndView;
 		
 	}
 	
-	@RequestMapping("/templates/telas/usuario")
+	@RequestMapping(method = RequestMethod.POST, value="**/cadastrarusuario")
 	public ModelAndView cadastroUsuario(Usuario usuario) {
 		
 		usuarioRepository.save(usuario);
-		ModelAndView modelAndView = new ModelAndView("/templates/telas/usuario");
-		modelAndView.addObject("usuarioobj", usuario);
+		ModelAndView modelAndView = new ModelAndView("/telas/usuario");
+		modelAndView.addObject("usuarioobj", new Usuario());
 		
 		return modelAndView;
 	}
+	
+	 
 }

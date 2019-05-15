@@ -9,8 +9,8 @@
 			<form action="cadastrarusuario" th:object="${usuarioobj}" method="POST" class="col s12">
 				<div class="row">
 					<div class="input-field col s6">
-						<label for="codUsuario">Código:</label>
-						<input name="codUsuario" type="text" th:field="*{codUsuario}" readonly="readonly">
+						<label for="codusuario">Código:</label>
+						<input name="codusuario" th:field="*{codUsuario}" readonly="readonly">
 					</div>
 					
 					<div class="input-field col s12">
@@ -27,7 +27,7 @@
 					</div>
 					
 					<div class="input-field col s6">
-						<input type="submit" title="cadastrar">
+						<a href="/index"> <input type="submit" value="salvar" title="cadastrar"></a>
 					</div>
 				</div>
 			</form>

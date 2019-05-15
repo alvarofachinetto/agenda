@@ -1,6 +1,7 @@
 package com.evento.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -38,6 +39,16 @@ public class Usuario implements Serializable {
 
 	@OneToMany(mappedBy="usuario", orphanRemoval=true, cascade= CascadeType.ALL)
 	
+	private List <Evento> eventos;
+	
+	public List<Evento> getEventos() {
+		return eventos;
+	}
+
+	public void setEventos(List<Evento> eventos) {
+		this.eventos = eventos;
+	}
+
 	public long getCodUsuario() {
 		return codUsuario;
 	}
