@@ -31,8 +31,8 @@ public class Evento implements Serializable{
 	@Column(name="dataEvento")
 	private Date dataEvento; 
 
-	@Column(name="qtdPessoas")
-	private Integer quantidadePessoas;
+	@Column(name="pessoas")
+	private String nomePessoas;
 	
 	@Column(name="descricaoEvento")
 	private String descricaoEvento;
@@ -72,12 +72,13 @@ public class Evento implements Serializable{
 		this.dataEvento = dataEvento;
 	}
 
-	public Integer getQuantidadePessoas() {
-		return quantidadePessoas;
+
+	public String getNomePessoas() {
+		return nomePessoas;
 	}
 
-	public void setQuantidadePessoas(Integer quantidadePessoas) {
-		this.quantidadePessoas = quantidadePessoas;
+	public void setNomePessoas(String nomePessoas) {
+		this.nomePessoas = nomePessoas;
 	}
 
 	public String getDescricaoEvento() {
