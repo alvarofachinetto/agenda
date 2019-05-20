@@ -48,11 +48,11 @@ public class UsuarioController {
 		ModelAndView modelAndView = new ModelAndView("/telas/usuario");
 		modelAndView.addObject("usuarioobj", new Usuario());
 		
-		return principalEventos(); //retorna o carregamento da tela principal
+		return index(); //retorna o carregamento da tela login 
 	}
 	
 	//carrega tela de evento
-	@GetMapping("/telas/eventos")
+	@GetMapping("/telas/eventos/")
 	public ModelAndView principalEventos() {
 		ModelAndView modelAndView = new ModelAndView("/telas/evento");
 		modelAndView.addObject("eventoobj", new Evento());
@@ -61,15 +61,19 @@ public class UsuarioController {
 	}
 	
 	//cadastrar evento
-		@PostMapping("**/addevevnto/{codusuario}")
-		public ModelAndView cadastroEvento(@Valid Evento evento, @PathVariable("codusuario") Long codUsuario) {
-					
-			eventoRepository.save(evento);
-			ModelAndView modelAndView = new ModelAndView("/telas/usuario");
-			modelAndView.addObject("usuarioobj", new Usuario());
-			
-			return principalEventos(); //retorna o carregamento da tela principal
-		}
+//		@PostMapping("**/addevevnto/{codusuario}")
+//		public ModelAndView cadastroEvento(@Valid Evento evento, @PathVariable("codusuario")
+//		Long codUsuario) {
+//					
+//			Usuario usuario = usuarioRepository.findById(codUsuario).get();
+//			evento.setUsuario(usuario);
+//			eventoRepository.save(evento);
+//			ModelAndView modelAndView = new ModelAndView("/telas/usuario");
+//			modelAndView.addObject("usuarioobj", usuario);
+//			modelAndView.addObject("eventos", eventoRepository.eventos(codUsuario));
+//			
+//			return modelAndView; 
+//		}
 	
 	
 	 

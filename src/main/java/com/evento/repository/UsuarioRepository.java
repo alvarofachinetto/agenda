@@ -9,5 +9,5 @@ import com.evento.model.Usuario;
 @Repository
 @Transactional
 public interface UsuarioRepository extends CrudRepository<Usuario, Long>{
-	
+	Usuario findByName(String email);
 }

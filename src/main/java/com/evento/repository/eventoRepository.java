@@ -12,6 +12,6 @@ import com.evento.model.Evento;
 @Repository
 @Transactional
 public interface EventoRepository extends CrudRepository<Evento, Long>{
-	@Query("select e from Evento e where e.usuario.codUsuario = ?1")
-	public List <Evento> eventos(Long codUsuario);
+	@Query("select e from Evento e where e.usuario.codUsuario like ?1")
+	public List <Evento> eventos(Long coUsuario);
 }
