@@ -6,17 +6,17 @@
 	</head>
 
 	<body>
-		<form th:action="@{/login}">
+		<form action="logar" th:action="@{/login}" th:object="${logarobj}">
 			<div class="row">
 				<div class="input-field col s6">
 					<label for="email" class="active">Email</label>
-					<input name="email" class="validate">
+					<input name="email" class="validate" th:field="*{email}">
 					
 					<label for="senha" class="active">Senha</label> 
-					<input name="senha" class="validate">
+					<input name="senha" class="validate" th:field="*{senha}">
 				</div>
 					
-				<button>Entrar</button>	
+				<input type="submit" value="logar">	
 			 	<a href="/telas/usuario">Cadastrar-se</a> 
 			</div>	
 		</form>			

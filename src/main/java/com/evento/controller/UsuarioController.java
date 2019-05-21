@@ -1,7 +1,5 @@
 package com.evento.controller;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +28,7 @@ public class UsuarioController {
 	@GetMapping("/login")
 	public ModelAndView index() {
 		ModelAndView modelAndView = new ModelAndView("index");
+		modelAndView.addObject("logarobj", new Usuario());
 		return modelAndView;
 	}
 	//carrega tela de usuario
@@ -58,6 +57,14 @@ public class UsuarioController {
 		modelAndView.addObject("eventoobj", new Evento());
 		
 		return modelAndView;
+	}
+	
+	@PostMapping("/logar")
+	public ModelAndView logar(@PathVariable("email")String email, @PathVariable("senha")String senha) {
+		Usuario login = usuarioRepository.findByUsuario(email, senha);
+		ModelAndView andView = new ModelAndView("/telas/evento");
+		andView.addObject("logarobj", login);
+		return principalEventos();
 	}
 	
 	//cadastrar evento

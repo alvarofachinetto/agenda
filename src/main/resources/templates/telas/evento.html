@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Principal Eventos</title>
+</head>
+<body>
+	
+	<a class="waves-effect waves-light btn-small" href="/cadastrarusuario"></a>
+	<div th:each="u : ${usuarioobj}">
+		<div class="row">
+			<p>Usuario<span th:text="u.codUsuario"></span></p>	
+		</div>
+	</div>
+	
+	<div>
+			<form action="formevento" th:object="${eventoobj}" method="POST" class="col s12">
+				<div class="row">
+					<div class="input-field col s6">
+						<label for="codEvento">Código</label>
+						<input name="codEvento" th:field="*{codEvento}" readonly="readonly">
+					</div>
+					
+					<div class="input-field col s12">
+						<label for="nomeEvevnto" class="active">Evento</label> 
+						<input name="nomeEvevnto" th:field="*{nomeEvevnto}" class="validate">
+					</div>
+					
+					<div class="input-field col s6">
+						<label for="dataEvento" class="active">Data</label> 
+						<input name="dataEvento" th:field="*{dataEvento}" class="validate">
+						
+						<label for="nomePessoas" class="active">Pessoas</label> 
+						<input name="nomePessoas" th:field="*{nomePessoas}" class="validate">
+					</div>
+					
+					<div class="input-field col s7">
+						<label for="descricaoEvento" class="active">Descrição do Evento</label>
+						<textarea name="descricaoEvento" th:field="*{descricaoEvento}" class="validate"></textarea>
+					</div>
+					
+					<div class="input-field col s6">
+						<input type="submit" value="salvar">
+					</div>
+				</div>
+			</form>
+			
+			<table class="striped">
+		<tr th:each="evento : ${eventos}">
+			<td th:text="${evento.nomeEvento}"></td>
+			<td th:text="${evento.dataEvento}"></td>
+			<td th:text="${evento.nomePessoas}"></td>
+			<td th:text="${evento.descricaoEvento}"></td>		
+		</tr>
+	</table>
+			
+	</div>
+	
+</body>
+</html>
