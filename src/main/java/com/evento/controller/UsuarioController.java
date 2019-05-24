@@ -47,7 +47,19 @@ public class UsuarioController {
 		ModelAndView modelAndView = new ModelAndView("/telas/usuario");
 		modelAndView.addObject("usuarioobj", new Usuario());
 		
-		return index(); //retorna o carregamento da tela login 
+		return modelAndView;
+	}
+	
+	//listar Usuario
+	@GetMapping("/listarusuario")
+	public ModelAndView listarUsuario() {
+		ModelAndView modelAndView = new ModelAndView("/telas/usuario");
+		Iterable<Usuario> usuarioIt = usuarioRepository.findAll();
+		modelAndView.addObject("usuarios", usuarioIt);
+		modelAndView.addObject("usuarioobj", new Usuario());
+		
+		return modelAndView;
+		
 	}
 	
 	//carrega tela de evento

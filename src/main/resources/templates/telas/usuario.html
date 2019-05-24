@@ -31,6 +31,26 @@
 					</div>
 				</div>
 			</form>
+			
+			<a href="/listarusuario">Lista Usuarios</a>
+			
+			
+			<table>
+				<tr>
+					<th>CÓD</th>
+					<th>Nome</th>
+						
+					</tr>
+					<tr th:each = "usuario : ${usuarios}">
+					<td th:text ="${usuario.codUsuario}"></td>
+						<!--  <td><a th:href="@{/telefones/{idpessoa}(idpessoa =${pessoa.id})}"><span th:text ="${pessoa.nome}"></span></a></td>-->
+					<td th:text ="${usuario.email}"></td>
+						
+						<!--  <td><a th:href="@{/editarpessoa/{idpessoa}(idpessoa =${pessoa.id})}">Editar</a></td>-->
+						<!--  <td><a th:href="@{/removerpessoa/{idpessoa}(idpessoa =${pessoa.id})}">Excluir</a></td>--> 
+				</tr>
+			</table>
+			
 		</div>
 	<body>
 	</body>

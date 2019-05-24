@@ -1,24 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html>
 	<head>
 		<meta charset="UTF-8">
 		<title>Pagina inicial</title>
 	</head>
 
 	<body>
-		<form action="logar" th:action="@{/login}" th:object="${logarobj}">
-			<div class="row">
-				<div class="input-field col s6">
-					<label for="email" class="active">Email</label>
-					<input name="email" class="validate" th:field="*{email}">
-					
-					<label for="senha" class="active">Senha</label> 
-					<input name="senha" class="validate" th:field="*{senha}">
-				</div>
-				
-				<input type="submit" value="logar" onclick="/telas/evento">	
-			 	<a href="/telas/usuario">Cadastrar-se</a> 
-			</div>	
-		</form>			
+			
+		<a href="/telas/usuario">Entrar</a> 
+						
 	</body>
 </html>
