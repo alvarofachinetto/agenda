@@ -51,7 +51,7 @@ public class UsuarioController {
 	}
 	
 	//carrega tela de evento
-	@GetMapping("/telas/eventos/")
+	@GetMapping("/telas/evento")
 	public ModelAndView principalEventos() {
 		ModelAndView modelAndView = new ModelAndView("/telas/evento");
 		modelAndView.addObject("eventoobj", new Evento());
@@ -59,13 +59,6 @@ public class UsuarioController {
 		return modelAndView;
 	}
 	
-	@PostMapping("/logar")
-	public ModelAndView logar(@PathVariable("email")String email, @PathVariable("senha")String senha) {
-		Usuario login = usuarioRepository.findByUsuario(email, senha);
-		ModelAndView andView = new ModelAndView("/telas/evento");
-		andView.addObject("logarobj", login);
-		return principalEventos();
-	}
 	
 	//cadastrar evento
 //		@PostMapping("**/addevevnto/{codusuario}")
