@@ -37,7 +37,7 @@
 			
 			<table>
 				<tr>
-					<th>CÓD</th>
+					<th>COD</th>
 					<th>Nome</th>
 						
 					</tr>
@@ -46,7 +46,7 @@
 						<!--  <td><a th:href="@{/telefones/{idpessoa}(idpessoa =${pessoa.id})}"><span th:text ="${pessoa.nome}"></span></a></td>-->
 					<td th:text ="${usuario.email}"></td>
 						
-						<!--  <td><a th:href="@{/editarpessoa/{idpessoa}(idpessoa =${pessoa.id})}">Editar</a></td>-->
+					<td><a th:href="@{/editarusuario/{codUsuario}(codUsuario =${usuario.codUsuario})}">Editar</a></td>
 						<!--  <td><a th:href="@{/removerpessoa/{idpessoa}(idpessoa =${pessoa.id})}">Excluir</a></td>--> 
 				</tr>
 			</table>

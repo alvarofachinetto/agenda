@@ -1,5 +1,7 @@
 package com.evento.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,6 +37,8 @@ public class UsuarioController {
 	@RequestMapping(method = RequestMethod.GET, value="/telas/usuario")
 	public ModelAndView formCadastro() {
 		ModelAndView modelAndView = new ModelAndView("/telas/usuario");
+		Iterable<Usuario> usuarioIt = usuarioRepository.findAll();
+		modelAndView.addObject("usuarios", usuarioIt);
 		modelAndView.addObject("usuarioobj", new Usuario());
 		return modelAndView;
 		
@@ -45,6 +49,8 @@ public class UsuarioController {
 				
 		usuarioRepository.save(usuario);
 		ModelAndView modelAndView = new ModelAndView("/telas/usuario");
+		Iterable<Usuario> usuarioIt = usuarioRepository.findAll();
+		modelAndView.addObject("usuarios", usuarioIt);
 		modelAndView.addObject("usuarioobj", new Usuario());
 		
 		return modelAndView;
@@ -62,16 +68,26 @@ public class UsuarioController {
 		
 	}
 	
-	//carrega tela de evento
-	@GetMapping("/telas/evento")
-	public ModelAndView principalEventos() {
-		ModelAndView modelAndView = new ModelAndView("/telas/evento");
-		modelAndView.addObject("eventoobj", new Evento());
+	
+	//editar usuario
+	@GetMapping("/editarusuario/{codUsuario}")
+	public ModelAndView editarUsuario(@PathVariable("codUsuario")Long codUsuario) {
+		Optional<Usuario> usuario = usuarioRepository.findById(codUsuario);
+		ModelAndView modelAndView = new ModelAndView("/telas/usuario");
+		modelAndView.addObject("usuarioobj", usuario.get());
 		
 		return modelAndView;
 	}
 	
-	
+	//carrega tela de evento
+		@GetMapping("/telas/evento")
+		public ModelAndView principalEventos() {
+			ModelAndView modelAndView = new ModelAndView("/telas/evento");
+			modelAndView.addObject("eventoobj", new Evento());
+			
+			return modelAndView;
+		}
+		
 	//cadastrar evento
 //		@PostMapping("**/addevevnto/{codusuario}")
 //		public ModelAndView cadastroEvento(@Valid Evento evento, @PathVariable("codusuario")
