@@ -2,6 +2,8 @@ package com.evento.controller;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -68,7 +70,6 @@ public class UsuarioController {
 		
 	}
 	
-	
 	//editar usuario
 	@GetMapping("/editarusuario/{codUsuario}")
 	public ModelAndView editarUsuario(@PathVariable("codUsuario")Long codUsuario) {
@@ -80,10 +81,13 @@ public class UsuarioController {
 	}
 	
 	//carrega tela de evento
-		@GetMapping("/telas/evento")
-		public ModelAndView principalEventos() {
+		@GetMapping("/evento/{codUsuario}")
+		public ModelAndView principalEventos( @PathVariable("codUsuario") Long codUsuario) {
+			Optional<Usuario> usuario = usuarioRepository.findById(codUsuario);
+			
 			ModelAndView modelAndView = new ModelAndView("/telas/evento");
-			modelAndView.addObject("eventoobj", new Evento());
+			modelAndView.addObject("usuarioobj", usuario.get());
+			modelAndView.addObject("evento", eventoRepository.eventos(codUsuario));
 			
 			return modelAndView;
 		}

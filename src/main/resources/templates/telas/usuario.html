@@ -43,9 +43,8 @@
 					</tr>
 					<tr th:each = "usuario : ${usuarios}">
 					<td th:text ="${usuario.codUsuario}"></td>
-						<!--  <td><a th:href="@{/telefones/{idpessoa}(idpessoa =${pessoa.id})}"><span th:text ="${pessoa.nome}"></span></a></td>-->
 					<td th:text ="${usuario.email}"></td>
-						
+					<td><a th:href="@{/evento/{codUsuario}(codUsuario =${usuario.codUsuario})}"><span th:text ="${usuario.email}"></span></a></td>	
 					<td><a th:href="@{/editarusuario/{codUsuario}(codUsuario =${usuario.codUsuario})}">Editar</a></td>
 						<!--  <td><a th:href="@{/removerpessoa/{idpessoa}(idpessoa =${pessoa.id})}">Excluir</a></td>--> 
 				</tr>

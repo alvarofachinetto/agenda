@@ -1,6 +1,5 @@
 package com.evento.model;
 
-import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -11,14 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ForeignKey;
+
 @Entity
 @Table(name="evento")
-public class Evento implements Serializable{
+@SuppressWarnings("deprecation")
+public class Evento{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -37,6 +35,7 @@ public class Evento implements Serializable{
 	@Column(name="descricaoEvento")
 	private String descricaoEvento;
 	
+	@ForeignKey(name="codUsuario")
 	@ManyToOne
 	private Usuario usuario;
 	
