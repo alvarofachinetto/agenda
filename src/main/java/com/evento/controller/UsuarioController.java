@@ -39,9 +39,10 @@ public class UsuarioController {
 	@RequestMapping(method = RequestMethod.GET, value="/telas/usuario")
 	public ModelAndView formCadastro() {
 		ModelAndView modelAndView = new ModelAndView("/telas/usuario");
+		modelAndView.addObject("usuarioobj", new Usuario());
 		Iterable<Usuario> usuarioIt = usuarioRepository.findAll();
 		modelAndView.addObject("usuarios", usuarioIt);
-		modelAndView.addObject("usuarioobj", new Usuario());
+		
 		return modelAndView;
 		
 	}

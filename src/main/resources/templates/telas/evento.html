@@ -15,7 +15,7 @@
 	
 	<div>
 		<!-- th:action="@{/buscarUsuario/{email}(email=${usuario.email})}" -->
-			<form action="formevento" th:object="${eventoobj}" method="POST" class="col s12">
+			<form action="formevento" th:action="@{/cadastrarEvento/{usuario}(usuario=${usuarioobj.codUsuario})}"  method="POST" class="col s12">
 				<div class="row">
 					<div class="input-field col s6">
 						<label for="codEvento">Código</label>

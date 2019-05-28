@@ -25,7 +25,7 @@ public class Usuario implements Serializable {
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	@Column(name="codUsuario")
-	private Long codUsuario;
+	private long codUsuario;
 	
 	@Column(name="email")
 	private String email;
