@@ -30,12 +30,12 @@ public class Usuario implements Serializable {
 	@Column(name="email")
 	private String email;
 	
-	@Column(name="senha")
-	private String senha;
+	@Column(name="nome")
+	private String nome;
 	
-	@Column(name="confSenha")
+	@Column(name="idade")
 	@Transient
-	private String confSenha;
+	private int idade;
 
 	@OneToMany(mappedBy="usuario", orphanRemoval=true, cascade= CascadeType.ALL)
 	
@@ -65,19 +65,21 @@ public class Usuario implements Serializable {
 		this.email = email;
 	}
 
-	public String getSenha() {
-		return senha;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public String getConfSenha() {
-		return confSenha;
+	public int getIdade() {
+		return idade;
 	}
 
-	public void setConfSenha(String confSenha) {
-		this.confSenha = confSenha;
+	public void setIdade(int idade) {
+		this.idade = idade;
 	}
+
+	
 }

@@ -6,21 +6,19 @@
 </head>
 <body>
 	
-	<!--  <a class="waves-effect waves-light btn-small" href="/cadastrarusuario"></a>
+	<a class="waves-effect waves-light btn-small" href="/cadastrarusuario"></a>
 	<div th:each="u : ${usuarioobj}">
 		<div class="row">
-			<p>Usuario<span th:text="u.codUsuario"></span></p>	
+			<p>Codigo<span th:text="u.codUsuario"></span></p>
+			<p>Nome<span th:text="u.nome"></span></p>
+			<p>Idade<span th:text="u.idade"></span></p>	
 		</div>
-	</div>-->  
+	</div> 
 	
 	<div>
 		<!-- th:action="@{/buscarUsuario/{email}(email=${usuario.email})}" -->
-			<form action="formevento" th:action="@{/cadastrarEvento/{usuario}(usuario=${usuarioobj.codUsuario})}"  method="POST" class="col s12">
+			<form  th:action="@{/cadastrarEvento/{usuario}(usuario=${usuarioobj.codUsuario})}"  method="POST" class="col s12">
 				<div class="row">
-					<div class="input-field col s6">
-						<label for="codEvento">Código</label>
-						<input name="codEvento" th:field="*{codEvento}" readonly="readonly">
-					</div>
 					
 					<div class="input-field col s12">
 						<label for="nomeEvevnto" class="active">Evento</label> 
