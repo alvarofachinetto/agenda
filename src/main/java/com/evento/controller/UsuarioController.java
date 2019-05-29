@@ -81,9 +81,20 @@ public class UsuarioController {
 		return modelAndView;
 	}
 	
+	//deletar usuario
+			@GetMapping("/removerusuario/{codUsuario}")
+			public ModelAndView removerUsuario(@PathVariable("codUsuario")Long codUsuario) {
+				usuarioRepository.deleteById(codUsuario);
+				ModelAndView modelAndView = new ModelAndView("/telas/usuario");
+				modelAndView.addObject("usuarioobj", usuarioRepository.findAll());
+				modelAndView.addObject("usuarioobj", new Usuario());
+				
+				return modelAndView;
+			}
+	
 	//carrega tela de evento
 		@GetMapping("/evento/{codUsuario}")
-		public ModelAndView principalEventos( @PathVariable("codUsuario") Long codUsuario) {
+		public ModelAndView principalEventos(@PathVariable("codUsuario") Long codUsuario) {
 			Optional<Usuario> usuario = usuarioRepository.findById(codUsuario);
 			
 			ModelAndView modelAndView = new ModelAndView("/telas/evento");
@@ -92,6 +103,8 @@ public class UsuarioController {
 			
 			return modelAndView;
 		}
+		
+		
 		
 	//cadastrar evento
 //		@PostMapping("**/addevevnto/{codusuario}")

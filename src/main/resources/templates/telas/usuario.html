@@ -45,7 +45,7 @@
 					<td th:text ="${usuario.codUsuario}"></td>
 					<td><a th:href="@{/evento/{codUsuario}(codUsuario =${usuario.codUsuario})}"><span th:text ="${usuario.email}"></span></a></td>	
 					<td><a th:href="@{/editarusuario/{codUsuario}(codUsuario =${usuario.codUsuario})}">Editar</a></td>
-						<!--  <td><a th:href="@{/removerpessoa/{idpessoa}(idpessoa =${pessoa.id})}">Excluir</a></td>--> 
+					<td><a th:href="@{/removerusuario/{codUsuario}(codUsuario =${usuario.codUsuario})}">Excluir</a></td> 
 				</tr>
 			</table>
 			
