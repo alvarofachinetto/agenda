@@ -9,33 +9,33 @@
 	<a class="waves-effect waves-light btn-small" href="/cadastrarusuario"></a>
 	<div th:each="u : ${usuarioobj}">
 		<div class="row">
-			<p>Codigo<span th:text="u.codUsuario"></span></p>
-			<p>Nome<span th:text="u.nome"></span></p>
-			<p>Idade<span th:text="u.idade"></span></p>	
+			<p>Codigo:<span th:text="u.codUsuario"></span></p>
+			<p>Nome:<span th:text="u.nome"></span></p>
+			<p>Idade:<span th:text="u.idade"></span></p>	
 		</div>
 	</div> 
 	
 	<div>
 		<!-- th:action="@{/buscarUsuario/{email}(email=${usuario.email})}" -->
-			<form  th:action="@{/cadastrarEvento/{usuario}(usuario=${usuarioobj.codUsuario})}"  method="POST" class="col s12">
+			<form  th:action="@{/addEvento/{codUsuario}(codUsuario=${usuarioobj.codUsuario})}"  method="POST" class="col s12">
 				<div class="row">
 					
 					<div class="input-field col s12">
 						<label for="nomeEvevnto" class="active">Evento</label> 
-						<input name="nomeEvento" th:field="*{nomeEvento}" class="validate">
+						<input name="nomeEvento" id="nomeEvento" class="validate">
 					</div>
 					
 					<div class="input-field col s6">
 						<label for="dataEvento" class="active">Data</label> 
-						<input name="dataEvento" th:field="*{dataEvento}" class="validate">
+						<input name="dataEvento" id="dataEvento" class="validate">
 						
 						<label for="nomePessoas" class="active">Pessoas</label> 
-						<input name="nomePessoas" th:field="*{nomePessoas}" class="validate">
+						<input name="nomePessoas" id="nomePessoas" class="validate">
 					</div>
 					
 					<div class="input-field col s7">
 						<label for="descricaoEvento" class="active">Descrição do Evento</label>
-						<textarea name="descricaoEvento" th:field="*{descricaoEvento}" class="validate"></textarea>
+						<textarea name="descricaoEvento" id="descricaoEvento" class="validate"></textarea>
 					</div>
 					
 					<div class="input-field col s6">
@@ -44,14 +44,14 @@
 				</div>
 			</form>
 			
-			<!--  <table class="striped">
+		<table class="striped">
 		<tr th:each="evento : ${eventos}">
 			<td th:text="${evento.nomeEvento}"></td>
 			<td th:text="${evento.dataEvento}"></td>
 			<td th:text="${evento.nomePessoas}"></td>
 			<td th:text="${evento.descricaoEvento}"></td>		
 		</tr>
-	</table>--> 
+	</table> 
 			
 	</div>
 	

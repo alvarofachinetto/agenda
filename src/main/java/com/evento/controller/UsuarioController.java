@@ -93,13 +93,12 @@ public class UsuarioController {
 			}
 	
 	//carrega tela de evento
-		@GetMapping("/evento/{codUsuario}")
+		@GetMapping("**/evento/{codUsuario}")
 		public ModelAndView principalEventos(@PathVariable("codUsuario") Long codUsuario) {
 			Optional<Usuario> usuario = usuarioRepository.findById(codUsuario);
 			
 			ModelAndView modelAndView = new ModelAndView("/telas/evento");
 			modelAndView.addObject("usuarioobj", usuario.get());
-			modelAndView.addObject("evento", eventoRepository.eventos(codUsuario));
 			
 			return modelAndView;
 		}
@@ -107,16 +106,15 @@ public class UsuarioController {
 		
 		
 	//cadastrar evento
-		@PostMapping("**/cadastrarEvento/{usuario}")
+		@PostMapping("**/addEvento/{codUsuario}")
 		public ModelAndView cadastroEvento(@Valid Evento evento, @PathVariable("codUsuario") Long codUsuario) {
 					
 			Usuario usuario = usuarioRepository.findById(codUsuario).get();
 			evento.setUsuario(usuario);
 			eventoRepository.save(evento);
-			ModelAndView modelAndView = new ModelAndView("/telas/usuario");
+			ModelAndView modelAndView = new ModelAndView("/telas/evento");
 			modelAndView.addObject("usuarioobj", usuario);
 			modelAndView.addObject("eventos", eventoRepository.eventos(codUsuario));
-			
 			return modelAndView; 
 		}
 	
