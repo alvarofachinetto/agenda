@@ -1,6 +1,7 @@
 package com.evento.model;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ForeignKey;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="evento")
@@ -26,8 +28,9 @@ public class Evento{
 	@Column(name="nomeEvento")
 	private String nomeEvento;
 	
+	@DateTimeFormat(pattern="dd/MM/yyyy")
 	@Column(name="dataEvento")
-	private SimpleDateFormat dataEvento; 
+	private Date dataEvento; 
 
 	@Column(name="pessoas")
 	private String nomePessoas;
@@ -63,11 +66,11 @@ public class Evento{
 		this.nomeEvento = nomeEvento;
 	}
 
-	public SimpleDateFormat getDataEvento() {
+	public Date getDataEvento() {
 		return dataEvento;
 	}
 
-	public void setDataEvento(SimpleDateFormat dataEvento) {
+	public void setDataEvento(Date dataEvento) {
 		this.dataEvento = dataEvento;
 	}
 

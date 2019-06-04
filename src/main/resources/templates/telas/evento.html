@@ -9,6 +9,12 @@
 </head>
 <body>
 	
+	<script>
+		$(function() {
+    	$( "#dataEvento" ).datepicker({showButtonPanel:true});
+    	});
+	</script>
+	
 	<a class="waves-effect waves-light btn-small" href="/cadastrarusuario"></a>
 	<div th:each="u : ${usuarioobj}">
 		<div class="row">
@@ -31,7 +37,7 @@
 					
 					<div class="input-field col s6">
 						<label for="dataEvento" class="active">Data</label> 
-						<input name="dataEvento" id="dataEvento" id="calendario" class="validate">
+						<input name="dataEvento" id="dataEvento" class="validate">
 						
 						<label for="nomePessoas" class="active">Pessoas</label> 
 						<input name="nomePessoas" id="nomePessoas" class="validate">
@@ -59,10 +65,6 @@
 			
 	</div>
 	
-	<script>
-		$(function() {
-    	$( "#calendario" ).datepicker();
-    	});
-	</script>
+	
 </body>
 </html>
