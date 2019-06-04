@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Principal Eventos</title>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+<script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
 </head>
 <body>
 	
@@ -14,7 +17,8 @@
 			<p>Idade:<span th:text="u.idade"></span></p>	
 		</div>
 	</div> 
-	
+	<br>
+	<br>
 	<div>
 		<!-- th:action="@{/buscarUsuario/{email}(email=${usuario.email})}" -->
 			<form  th:action="@{/addEvento/{codUsuario}(codUsuario=${usuarioobj.codUsuario})}"  method="POST" class="col s12">
@@ -27,7 +31,7 @@
 					
 					<div class="input-field col s6">
 						<label for="dataEvento" class="active">Data</label> 
-						<input name="dataEvento" id="dataEvento" class="validate">
+						<input name="dataEvento" id="dataEvento" id="calendario" class="validate">
 						
 						<label for="nomePessoas" class="active">Pessoas</label> 
 						<input name="nomePessoas" id="nomePessoas" class="validate">
@@ -55,5 +59,10 @@
 			
 	</div>
 	
+	<script>
+		$(function() {
+    	$( "#calendario" ).datepicker();
+    	});
+	</script>
 </body>
 </html>

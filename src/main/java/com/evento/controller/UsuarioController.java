@@ -1,5 +1,7 @@
 package com.evento.controller;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -108,7 +110,8 @@ public class UsuarioController {
 	//cadastrar evento
 		@PostMapping("**/addEvento/{codUsuario}")
 		public ModelAndView cadastroEvento(@Valid Evento evento, @PathVariable("codUsuario") Long codUsuario) {
-					
+			
+			
 			Usuario usuario = usuarioRepository.findById(codUsuario).get();
 			evento.setUsuario(usuario);
 			eventoRepository.save(evento);
@@ -118,6 +121,12 @@ public class UsuarioController {
 			return modelAndView; 
 		}
 	
+		public SimpleDateFormat formatarData(Date data) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/ddd");
+			sdf.format(data);
+			
+			return sdf;
+		}
 	
 	 
 }

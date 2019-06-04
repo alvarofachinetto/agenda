@@ -1,6 +1,6 @@
 package com.evento.model;
 
-import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +27,7 @@ public class Evento{
 	private String nomeEvento;
 	
 	@Column(name="dataEvento")
-	private Date dataEvento; 
+	private SimpleDateFormat dataEvento; 
 
 	@Column(name="pessoas")
 	private String nomePessoas;
@@ -63,14 +63,13 @@ public class Evento{
 		this.nomeEvento = nomeEvento;
 	}
 
-	public Date getDataEvento() {
+	public SimpleDateFormat getDataEvento() {
 		return dataEvento;
 	}
 
-	public void setDataEvento(Date dataEvento) {
+	public void setDataEvento(SimpleDateFormat dataEvento) {
 		this.dataEvento = dataEvento;
 	}
-
 
 	public String getNomePessoas() {
 		return nomePessoas;
