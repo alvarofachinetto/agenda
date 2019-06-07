@@ -69,7 +69,13 @@
 	
 	<script>
 		
-		$( "#dataEvento" ).datepicker();
+	$(function() {
+	    $( "#calendario" ).datepicker({
+	        showOn: "button",
+	        buttonImage: "calendario.png",
+	        buttonImageOnly: true
+	    });
+	});
 	
 	</script>
 </body>

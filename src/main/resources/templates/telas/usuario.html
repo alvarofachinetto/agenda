@@ -6,47 +6,79 @@
 		
 		<link type="text/css" rel="stylesheet" href="/materialize/css/materialize.css"  media="screen,projection"/>
 		<link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen,projection"/>
+		<style type="text/css">
+			body{
+				padding: 0px;
+				margin: 0px;
+				background-color: #e0ffff;
+				font-family: tahoma;
+			}
+			
+			th{
+				font-size: 20px;
+			}
+			
+			td, a{
+				font-size: 15px;
+				font-style: #1e90ff;
+			}
 		
+			h1{
+				padding: 0px;
+				background-color: #7b68ee;
+				text-align: center;
+				font-size: 40px;
+				height: 50px;
+				font-style: bold;
+			}
+		</style>
 	</head>
 	<body>
+		<h1>Crud Spring Boot</h1>
 		<div>
-			<form action="cadastrarusuario" th:object="${usuarioobj}" method="POST" class="col s12">
+			<form action="cadastrarusuario" th:object="${usuarioobj}" id="cadastro" method="POST" class="col s12">
 				<div class="row">
-					<div class="input-field col s6">
-						<label for="codusuario">Código:</label>
-						<input name="codusuario" th:field="*{codUsuario}" readonly="readonly">
+					<div class="input-field col s3">
+						<label for="codUsuario">Código:</label>
+						<input name="codUsuario" th:field="*{codUsuario}" readonly="readonly">
 					</div>
 					
-					<div class="input-field col s12">
+				</div>
+				<div class="row">
+					<div class="input-field col s8">
 						<label for="email" class="active">Email: </label> 
 						<input name="email" th:field="*{email}" class="validate">
 					</div>
-					
-					<div class="input-field col s6">
-						<label for="senha" class="active">Nome: </label> 
-						<input name="senha" th:field="*{nome}" class="validate">
-						
-						<label for="confSenha" class="active">Idade: </label> 
-						<input name="confSenha" th:field="*{idade}" class="validate">
+				</div>
+				
+				<div class="row">	
+					<div class="input-field col s8">
+						<label for="nome" class="active">Nome: </label> 
+						<input name="nome" th:field="*{nome}" class="validate">
 					</div>
-					
+					<div class="input-field col s2">	
+						<label for="idade" class="active">Idade: </label> 
+						<input name="idade" th:field="*{idade}" class="validate">
+					</div>
+				</div>	
 					<div class="input-field col s6">
 						<a href="/index"> <input type="submit" value="salvar" title="cadastrar"></a>
+						<button id="novo" onclick="document.getElementById=('cadastro').reset();">Novo</button>
 					</div>
-				</div>
+				
 			</form>
-			
-			<a href="/listarusuario">Lista Usuarios</a>
-			
-			
+				
 			<table>
 				<tr>
-					<th>COD</th>
-					<th>Nome</th>
-					<th>Email</th>	
+					<th>Cod</th>
+					<th>Email</th>
+					<th>Idade</th>
+					<th>Nome</th>	
 					</tr>
 					<tr th:each = "usuario : ${usuarios}">
 					<td th:text ="${usuario.codUsuario}"></td>
+					<td th:text ="${usuario.email}"></td>
+					<td th:text ="${usuario.idade}"></td>
 					<td><a th:href="@{/evento/{codUsuario}(codUsuario =${usuario.codUsuario})}"><span th:text ="${usuario.nome}"></span></a></td>	
 					<td><a th:href="@{/editarusuario/{codUsuario}(codUsuario =${usuario.codUsuario})}">Editar</a></td>
 					<td><a th:href="@{/removerusuario/{codUsuario}(codUsuario =${usuario.codUsuario})}">Excluir</a></td> 
