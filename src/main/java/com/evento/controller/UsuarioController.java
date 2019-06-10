@@ -1,13 +1,15 @@
 package com.evento.controller;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,10 +39,11 @@ public class UsuarioController {
 		modelAndView.addObject("logarobj", new Usuario());
 		return modelAndView;
 	}
-	//carrega tela de usuario
-	@RequestMapping(method = RequestMethod.GET, value="/telas/usuario")
+	
+	//carrega tela de usuario e lista 
+	@RequestMapping(method = RequestMethod.GET, value="telas/usuario")
 	public ModelAndView formCadastro() {
-		ModelAndView modelAndView = new ModelAndView("/telas/usuario");
+		ModelAndView modelAndView = new ModelAndView("telas/usuario");
 		modelAndView.addObject("usuarioobj", new Usuario());
 		Iterable<Usuario> usuarioIt = usuarioRepository.findAll();
 		modelAndView.addObject("usuarios", usuarioIt);
@@ -48,12 +51,27 @@ public class UsuarioController {
 		return modelAndView;
 		
 	}
-	//cadastrar usuario
+	//cadastrar e validar usuario
 	@RequestMapping(method = RequestMethod.POST, value="**/cadastrarusuario")
-	public ModelAndView cadastroUsuario(Usuario usuario) {
-				
+	public ModelAndView cadastroUsuario(@Valid Usuario usuario, BindingResult bindingResult) {
+		
+		if(bindingResult.hasErrors()) {
+			ModelAndView modelAndView = new ModelAndView("telas/usuario");
+			Iterable<Usuario> usuarioIt = usuarioRepository.findAll();
+			modelAndView.addObject("usuarios", usuarioIt);
+			modelAndView.addObject("usuarioobj", usuario);
+			
+			List<String> msg = new ArrayList<String>();
+			for(ObjectError erro : bindingResult.getAllErrors()) {
+				msg.add(erro.getDefaultMessage());
+			}
+			
+			modelAndView.addObject("msg", msg);
+			return modelAndView;
+		}
+		
 		usuarioRepository.save(usuario);
-		ModelAndView modelAndView = new ModelAndView("/telas/usuario");
+		ModelAndView modelAndView = new ModelAndView("telas/usuario");
 		Iterable<Usuario> usuarioIt = usuarioRepository.findAll();
 		modelAndView.addObject("usuarios", usuarioIt);
 		modelAndView.addObject("usuarioobj", new Usuario());
@@ -90,7 +108,6 @@ public class UsuarioController {
 				ModelAndView modelAndView = new ModelAndView("/telas/usuario");
 				modelAndView.addObject("usuarioobj", usuarioRepository.findAll());
 				modelAndView.addObject("usuarioobj", new Usuario());
-				
 				return modelAndView;
 			}
 	
@@ -121,12 +138,4 @@ public class UsuarioController {
 			return modelAndView; 
 		}
 	
-		public SimpleDateFormat formatarData(Date data) {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/ddd");
-			sdf.format(data);
-			
-			return sdf;
-		}
-	
-	 
 }

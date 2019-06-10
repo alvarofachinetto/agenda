@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="usuario")
@@ -27,12 +29,15 @@ public class Usuario implements Serializable {
 	@Column(name="codUsuario")
 	private long codUsuario;
 	
+	@NotEmpty(message="Email não pode ser vazio")
 	@Column(name="email")
 	private String email;
 	
+	@NotEmpty(message="Nome não pode ser vazio")
 	@Column(name="nome")
 	private String nome;
 	
+	@NotNull(message="Idade não pode ser nula")
 	@Column(name="idade")
 	@Transient
 	private int idade;
