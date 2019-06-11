@@ -41,85 +41,118 @@ public class UsuarioController {
 	}
 	
 	//carrega tela de usuario e lista 
-	@RequestMapping(method = RequestMethod.GET, value="telas/usuario")
+	@RequestMapping(method = RequestMethod.GET, value="/usuario")
 	public ModelAndView formCadastro() {
-		ModelAndView modelAndView = new ModelAndView("telas/usuario");
-		modelAndView.addObject("usuarioobj", new Usuario());
-		Iterable<Usuario> usuarioIt = usuarioRepository.findAll();
-		modelAndView.addObject("usuarios", usuarioIt);
-		
-		return modelAndView;
+		try {
+			ModelAndView modelAndView = new ModelAndView("telas/usuario");
+			modelAndView.addObject("usuarioobj", new Usuario());
+			Iterable<Usuario> usuarioIt = usuarioRepository.findAll();
+			modelAndView.addObject("usuarios", usuarioIt);
+			return modelAndView;
+		} catch (Exception e) {
+			e.getMessage();
+			throw e;
+		}
 		
 	}
 	//cadastrar e validar usuario
 	@RequestMapping(method = RequestMethod.POST, value="**/cadastrarusuario")
 	public ModelAndView cadastroUsuario(@Valid Usuario usuario, BindingResult bindingResult) {
-		
-		if(bindingResult.hasErrors()) {
+		try {
+			if(bindingResult.hasErrors()) {
+				ModelAndView modelAndView = new ModelAndView("telas/usuario");
+				Iterable<Usuario> usuarioIt = usuarioRepository.findAll();
+				modelAndView.addObject("usuarios", usuarioIt);
+				modelAndView.addObject("usuarioobj", usuario);
+				
+				List<String> msg = new ArrayList<String>();
+				for(ObjectError erro : bindingResult.getAllErrors()) {
+					msg.add(erro.getDefaultMessage());
+				}
+				
+				modelAndView.addObject("msg", msg);
+				return modelAndView;
+			}
+			
+			usuarioRepository.save(usuario);
 			ModelAndView modelAndView = new ModelAndView("telas/usuario");
 			Iterable<Usuario> usuarioIt = usuarioRepository.findAll();
 			modelAndView.addObject("usuarios", usuarioIt);
-			modelAndView.addObject("usuarioobj", usuario);
+			modelAndView.addObject("usuarioobj", new Usuario());
 			
-			List<String> msg = new ArrayList<String>();
-			for(ObjectError erro : bindingResult.getAllErrors()) {
-				msg.add(erro.getDefaultMessage());
-			}
-			
-			modelAndView.addObject("msg", msg);
 			return modelAndView;
+		} catch (Exception e) {
+			e.getMessage();
+			throw e;
 		}
 		
-		usuarioRepository.save(usuario);
-		ModelAndView modelAndView = new ModelAndView("telas/usuario");
-		Iterable<Usuario> usuarioIt = usuarioRepository.findAll();
-		modelAndView.addObject("usuarios", usuarioIt);
-		modelAndView.addObject("usuarioobj", new Usuario());
-		
-		return modelAndView;
 	}
 	
 	//listar Usuario
 	@GetMapping("/listarusuario")
 	public ModelAndView listarUsuario() {
-		ModelAndView modelAndView = new ModelAndView("/telas/usuario");
-		Iterable<Usuario> usuarioIt = usuarioRepository.findAll();
-		modelAndView.addObject("usuarios", usuarioIt);
-		modelAndView.addObject("usuarioobj", new Usuario());
-		
-		return modelAndView;
+		try {
+
+			ModelAndView modelAndView = new ModelAndView("telas/usuario");
+			Iterable<Usuario> usuarioIt = usuarioRepository.findAll();
+			modelAndView.addObject("usuarios", usuarioIt);
+			modelAndView.addObject("usuarioobj", new Usuario());
+			
+			return modelAndView;
+			
+		} catch (Exception e) {
+			e.getMessage();
+			throw e;
+		}
 		
 	}
 	
 	//editar usuario
 	@GetMapping("/editarusuario/{codUsuario}")
 	public ModelAndView editarUsuario(@PathVariable("codUsuario")Long codUsuario) {
-		Optional<Usuario> usuario = usuarioRepository.findById(codUsuario);
-		ModelAndView modelAndView = new ModelAndView("/telas/usuario");
-		modelAndView.addObject("usuarioobj", usuario.get());
+		try {
+			Optional<Usuario> usuario = usuarioRepository.findById(codUsuario);
+			ModelAndView modelAndView = new ModelAndView("/telas/usuario");
+			modelAndView.addObject("usuarioobj", usuario.get());
+			
+			return modelAndView;
+		} catch (Exception e) {
+			e.getMessage();
+			throw e;
+		}
 		
-		return modelAndView;
 	}
 	
 	//deletar usuario
-			@GetMapping("/removerusuario/{codUsuario}")
-			public ModelAndView removerUsuario(@PathVariable("codUsuario")Long codUsuario) {
-				usuarioRepository.deleteById(codUsuario);
-				ModelAndView modelAndView = new ModelAndView("/telas/usuario");
-				modelAndView.addObject("usuarioobj", usuarioRepository.findAll());
-				modelAndView.addObject("usuarioobj", new Usuario());
-				return modelAndView;
-			}
+	@GetMapping("/removerusuario/{codUsuario}")
+	public ModelAndView removerUsuario(@PathVariable("codUsuario")Long codUsuario) {
+		try {
+			usuarioRepository.deleteById(codUsuario);
+			ModelAndView modelAndView = new ModelAndView("/telas/usuario");
+			modelAndView.addObject("usuarioobj", usuarioRepository.findAll());
+			modelAndView.addObject("usuarioobj", new Usuario());
+			return modelAndView;
+		} catch (Exception e) {
+			e.getMessage();
+			throw e;
+		}
+	}
 	
 	//carrega tela de evento
 		@GetMapping("**/evento/{codUsuario}")
 		public ModelAndView principalEventos(@PathVariable("codUsuario") Long codUsuario) {
-			Optional<Usuario> usuario = usuarioRepository.findById(codUsuario);
+			try {
+				Optional<Usuario> usuario = usuarioRepository.findById(codUsuario);
+				
+				ModelAndView modelAndView = new ModelAndView("/telas/evento");
+				modelAndView.addObject("usuarioobj", usuario.get());
+				
+				return modelAndView;
+			} catch (Exception e) {
+				e.getMessage();
+				throw e;
+			}
 			
-			ModelAndView modelAndView = new ModelAndView("/telas/evento");
-			modelAndView.addObject("usuarioobj", usuario.get());
-			
-			return modelAndView;
 		}
 		
 		
@@ -128,14 +161,19 @@ public class UsuarioController {
 		@PostMapping("**/addEvento/{codUsuario}")
 		public ModelAndView cadastroEvento(@Valid Evento evento, @PathVariable("codUsuario") Long codUsuario) {
 			
-			
-			Usuario usuario = usuarioRepository.findById(codUsuario).get();
-			evento.setUsuario(usuario);
-			eventoRepository.save(evento);
-			ModelAndView modelAndView = new ModelAndView("/telas/evento");
-			modelAndView.addObject("usuarioobj", usuario);
-			modelAndView.addObject("eventos", eventoRepository.eventos(codUsuario));
-			return modelAndView; 
+			try {
+				Usuario usuario = usuarioRepository.findById(codUsuario).get();
+				evento.setUsuario(usuario);
+				eventoRepository.save(evento);
+				ModelAndView modelAndView = new ModelAndView("/telas/evento");
+				modelAndView.addObject("usuarioobj", usuario);
+				modelAndView.addObject("eventos", eventoRepository.eventos(codUsuario));
+				return modelAndView;
+			} catch (Exception e) {
+				e.getMessage();
+				throw e;
+			}
+			 
 		}
 	
 }
