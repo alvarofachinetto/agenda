@@ -41,10 +41,10 @@ public class UsuarioController {
 	}
 	
 	//carrega tela de usuario e lista 
-	@RequestMapping(method = RequestMethod.GET, value="/usuario")
+	@RequestMapping(method = RequestMethod.GET, value="/telas/usuario")
 	public ModelAndView formCadastro() {
 		try {
-			ModelAndView modelAndView = new ModelAndView("telas/usuario");
+			ModelAndView modelAndView = new ModelAndView("/telas/usuario");
 			modelAndView.addObject("usuarioobj", new Usuario());
 			Iterable<Usuario> usuarioIt = usuarioRepository.findAll();
 			modelAndView.addObject("usuarios", usuarioIt);
@@ -60,7 +60,8 @@ public class UsuarioController {
 	public ModelAndView cadastroUsuario(@Valid Usuario usuario, BindingResult bindingResult) {
 		try {
 			if(bindingResult.hasErrors()) {
-				ModelAndView modelAndView = new ModelAndView("telas/usuario");
+				ModelAndView modelAndView = new ModelAndView("/telas/usuario");
+				System.out.println(modelAndView);
 				Iterable<Usuario> usuarioIt = usuarioRepository.findAll();
 				modelAndView.addObject("usuarios", usuarioIt);
 				modelAndView.addObject("usuarioobj", usuario);
@@ -75,7 +76,7 @@ public class UsuarioController {
 			}
 			
 			usuarioRepository.save(usuario);
-			ModelAndView modelAndView = new ModelAndView("telas/usuario");
+			ModelAndView modelAndView = new ModelAndView("/telas/usuario");
 			Iterable<Usuario> usuarioIt = usuarioRepository.findAll();
 			modelAndView.addObject("usuarios", usuarioIt);
 			modelAndView.addObject("usuarioobj", new Usuario());
@@ -93,7 +94,7 @@ public class UsuarioController {
 	public ModelAndView listarUsuario() {
 		try {
 
-			ModelAndView modelAndView = new ModelAndView("telas/usuario");
+			ModelAndView modelAndView = new ModelAndView("/telas/usuario");
 			Iterable<Usuario> usuarioIt = usuarioRepository.findAll();
 			modelAndView.addObject("usuarios", usuarioIt);
 			modelAndView.addObject("usuarioobj", new Usuario());
