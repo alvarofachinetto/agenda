@@ -1,6 +1,5 @@
 package com.evento.model;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -38,7 +37,7 @@ public class Evento{
 	@Column(name="descricaoEvento")
 	private String descricaoEvento;
 	
-	@ForeignKey(name="codUsuario")
+	@ForeignKey(name="cod_usuario")
 	@ManyToOne
 	private Usuario usuario;
 	

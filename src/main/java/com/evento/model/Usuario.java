@@ -37,9 +37,9 @@ public class Usuario implements Serializable {
 	@Column(name="nome")
 	private String nome;
 	
+	@Transient
 	@NotNull(message="Idade não pode ser nula")
 	@Column(name="idade")
-	@Transient
 	private int idade;
 
 	@OneToMany(mappedBy="usuario", orphanRemoval=true, cascade= CascadeType.ALL)

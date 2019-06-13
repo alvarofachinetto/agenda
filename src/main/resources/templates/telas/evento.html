@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Principal Eventos</title>
+<title>Eventos</title>
 
 <link type="text/css" rel="stylesheet" href="/jquery/jquery-ui.min.css" >
 <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.css"  media="screen,projection"/>
@@ -22,11 +22,11 @@
 	<br>
 	<br>
 	<div>
-		<!-- th:action="@{/buscarUsuario/{email}(email=${usuario.email})}" -->
+		
 			<form  th:action="@{/addEvento/{codUsuario}(codUsuario=${usuarioobj.codUsuario})}"  method="POST" class="col s12">
 				<div class="row">
 					
-					<div class="input-field col s12">
+					<div class="input-field col s8">
 						<label for="nomeEvevnto" class="active">Evento</label> 
 						<input name="nomeEvento" id="nomeEvento" class="validate">
 					</div>
@@ -39,12 +39,12 @@
 						<input name="nomePessoas" id="nomePessoas" class="validate">
 					</div>
 					
-					<div class="input-field col s7">
+					<div class="input-field col s6">
 						<label for="descricaoEvento" class="active">Descrição do Evento</label>
 						<textarea name="descricaoEvento" id="descricaoEvento" class="validate"></textarea>
 					</div>
 					
-					<div class="input-field col s6">
+					<div class="input-field col s3">
 						<input type="submit" value="salvar">
 					</div>
 				</div>
@@ -53,10 +53,11 @@
 			
 		<table class="striped">
 		<tr th:each="evento : ${eventos}">
-			<td th:text="${evento.nomeEvento}"></td>
-			<td th:text="${evento.dataEvento}"></td>
-			<td th:text="${evento.nomePessoas}"></td>
-			<td th:text="${evento.descricaoEvento}"></td>		
+			<td th:text="${evento.nomeEvento}"/>
+			<td th:text="${evento.dataEvento}"/>
+			<td th:text="${evento.nomePessoas}"/>
+			<td th:text="${evento.descricaoEvento}"/>	
+			<td><a th:href="@{/removerEvento/{codEvento}(codEvento = ${evento.codEvento})">Excluir</a></td>	
 		</tr>
 	</table> 
 			

@@ -158,7 +158,7 @@ public class UsuarioController {
 		
 		
 		
-	//cadastrar evento
+		//cadastrar evento
 		@PostMapping("**/addEvento/{codUsuario}")
 		public ModelAndView cadastroEvento(@Valid Evento evento, @PathVariable("codUsuario") Long codUsuario) {
 			
@@ -169,6 +169,25 @@ public class UsuarioController {
 				ModelAndView modelAndView = new ModelAndView("/telas/evento");
 				modelAndView.addObject("usuarioobj", usuario);
 				modelAndView.addObject("eventos", eventoRepository.eventos(codUsuario));
+				return modelAndView;
+			} catch (Exception e) {
+				e.getMessage();
+				throw e;
+			}
+			 
+		}
+		
+		@PostMapping("**/removerEvento/{codEvento}")
+		public ModelAndView excluirEvento(@Valid Evento evento, @PathVariable("codEvento") Long codEvento) {
+			
+			try {
+				
+				Usuario usuario = eventoRepository.findById(codEvento).get().getUsuario();
+				eventoRepository.deleteById(codEvento);
+				
+				ModelAndView modelAndView = new ModelAndView("/telas/evento");
+				modelAndView.addObject("usuarioobj", usuario);
+				modelAndView.addObject("eventos", eventoRepository.eventos(usuario.getCodUsuario()));
 				return modelAndView;
 			} catch (Exception e) {
 				e.getMessage();
