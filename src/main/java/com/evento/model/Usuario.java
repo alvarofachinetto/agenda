@@ -1,7 +1,8 @@
 package com.evento.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -24,6 +24,10 @@ public class Usuario implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	public Usuario() {
+		eventos = new TreeSet<Evento>();
+	}
+	
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	@Column(name="codUsuario")
@@ -37,21 +41,21 @@ public class Usuario implements Serializable {
 	@Column(name="nome")
 	private String nome;
 	
-	@Transient
+	
 	@NotNull(message="Idade não pode ser nula")
 	@Column(name="idade")
 	private int idade;
 
-	@OneToMany(mappedBy="usuario", orphanRemoval=true, cascade= CascadeType.ALL)
+	@OneToMany(mappedBy="usuario", orphanRemoval= true, cascade= CascadeType.ALL)
+	private Set <Evento> eventos;
 	
-	private List <Evento> eventos;
-	
-	public List<Evento> getEventos() {
+	public Set<Evento> getEventos() {
 		return eventos;
 	}
 
-	public void setEventos(List<Evento> eventos) {
-		this.eventos = eventos;
+	public void setEventos(Set<Evento> eventos) {
+		this.eventos.clear();
+		this.eventos.addAll(eventos);
 	}
 
 	public long getCodUsuario() {
@@ -85,6 +89,7 @@ public class Usuario implements Serializable {
 	public void setIdade(int idade) {
 		this.idade = idade;
 	}
-
+	
+	
 	
 }

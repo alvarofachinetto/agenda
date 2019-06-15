@@ -177,7 +177,7 @@ public class UsuarioController {
 			 
 		}
 		
-		@PostMapping("**/removerEvento/{codEvento}")
+		@GetMapping("**/removerEvento/{codEvento}")
 		public ModelAndView excluirEvento(@Valid Evento evento, @PathVariable("codEvento") Long codEvento) {
 			
 			try {

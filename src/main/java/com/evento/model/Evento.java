@@ -37,7 +37,7 @@ public class Evento{
 	@Column(name="descricaoEvento")
 	private String descricaoEvento;
 	
-	@ForeignKey(name="cod_usuario")
+	@ForeignKey(name="usuario_cod_usuario")
 	@ManyToOne
 	private Usuario usuario;
 	

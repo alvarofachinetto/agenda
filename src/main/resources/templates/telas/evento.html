@@ -8,8 +8,40 @@
 <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.css"  media="screen,projection"/>
 <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen,projection"/>
 
+<style type="text/css">
+			body{
+				padding: 0px;
+				margin: 0px;
+				background-color: #e0ffff;
+				font-family: tahoma;
+			}
+			
+			th{
+				font-size: 20px;
+			}
+			
+			td, a{
+				font-size: 15px;
+				font-style: #1e90ff;
+			}
+		
+			h1{
+				margin: -4px;
+				background-color: #7b68ee;
+				text-align: center;
+				font-size: 40px;
+				height: 50px;
+				font-style: bold;
+			}
+			
+			input{
+				border-bottom: solid 1px;
+			}
+		</style>
+
 </head>
 <body>
+	<h1>Evento</h1>
 	
 	<a href="/telas/usuario">Usuario</a>
 	<div th:each="u : ${usuarioobj}">
@@ -22,7 +54,6 @@
 	<br>
 	<br>
 	<div>
-		
 			<form  th:action="@{/addEvento/{codUsuario}(codUsuario=${usuarioobj.codUsuario})}"  method="POST" class="col s12">
 				<div class="row">
 					
@@ -30,24 +61,32 @@
 						<label for="nomeEvevnto" class="active">Evento</label> 
 						<input name="nomeEvento" id="nomeEvento" class="validate">
 					</div>
-					
-					<div class="input-field col s6">
+					<div class="input-field col s3">
 						<label for="dataEvento" class="active">Data</label> 
 						<input name="dataEvento" id="dataEvento" class="validate">
-						
+					</div>
+				</div>
+				<div class="row">
+					
+				</div>
+				<div class="row">
+					<div class="input-field col s6">
 						<label for="nomePessoas" class="active">Pessoas</label> 
 						<input name="nomePessoas" id="nomePessoas" class="validate">
 					</div>
-					
+				</div>
+				
+				<div class="row">
 					<div class="input-field col s6">
 						<label for="descricaoEvento" class="active">Descrição do Evento</label>
 						<textarea name="descricaoEvento" id="descricaoEvento" class="validate"></textarea>
 					</div>
-					
+				</div>
+				
 					<div class="input-field col s3">
 						<input type="submit" value="salvar">
 					</div>
-				</div>
+				
 			</form>
 			
 			
@@ -57,7 +96,7 @@
 			<td th:text="${evento.dataEvento}"/>
 			<td th:text="${evento.nomePessoas}"/>
 			<td th:text="${evento.descricaoEvento}"/>	
-			<td><a th:href="@{/removerEvento/{codEvento}(codEvento = ${evento.codEvento})">Excluir</a></td>	
+			<td><a th:href="@{/removerEvento/{codEvento}(codEvento = ${evento.codEvento})}">Excluir</a></td>	
 		</tr>
 	</table> 
 			
