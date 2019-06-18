@@ -57,18 +57,18 @@
 				<div class="row">
 					<div class="input-field col s8">
 						<label for="email" class="active">Email: </label> 
-						<input name="email" th:field="*{email}" class="validate">
+						<input name="email" type="email" th:field="*{email}" class="validate" required="required">
 					</div>
 				</div>
 				
 				<div class="row">	
 					<div class="input-field col s8">
 						<label for="nome" class="active">Nome: </label> 
-						<input name="nome" th:field="*{nome}" class="validate">
+						<input name="nome" th:field="*{nome}" class="validate" required="required">
 					</div>
 					<div class="input-field col s2">	
 						<label for="idade" class="active">Idade: </label> 
-						<input name="idade" th:field="*{idade}" class="validate">
+						<input name="idade" type="number" th:field="*{idade}" class="validate" required="required">
 					</div>
 				</div>	
 					<div class="input-field col s6">

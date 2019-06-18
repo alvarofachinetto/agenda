@@ -27,7 +27,7 @@ public class Evento{
 	@Column(name="nomeEvento")
 	private String nomeEvento;
 	
-	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Column(name="dataEvento")
 	private Date dataEvento; 
 
