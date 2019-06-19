@@ -96,8 +96,9 @@
 			<td th:text="${evento.nomeEvento}"/>
 			<td th:text="${evento.dataEvento}"/>
 			<td th:text="${evento.nomePessoas}"/>
-			<td th:text="${evento.descricaoEvento}"/>	
-			<td><a th:href="@{/removerEvento/{codEvento}(codEvento = ${evento.codEvento})}">Excluir</a></td>	
+			<td th:text="${evento.descricaoEvento}"/>
+			<td><a th:href="@{/removerEvento/{codEvento}(codEvento = ${evento.codEvento})}">Excluir</a></td>
+			<td><a th:href="@{/editarEvento/{codEvento}(codEvento = ${evento.codEvento})}">Editar</a></td>	
 		</tr>
 	</table> 
 			

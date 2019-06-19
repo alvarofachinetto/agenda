@@ -147,7 +147,7 @@ public class UsuarioController {
 				
 				ModelAndView modelAndView = new ModelAndView("/telas/evento");
 				modelAndView.addObject("usuarioobj", usuario.get());
-				
+				modelAndView.addObject("eventos", eventoRepository.eventos(codUsuario));
 				return modelAndView;
 			} catch (Exception e) {
 				e.getMessage();
@@ -155,8 +155,6 @@ public class UsuarioController {
 			}
 			
 		}
-		
-		
 		
 		//cadastrar evento
 		@PostMapping("**/addEvento/{codUsuario}")
@@ -169,6 +167,23 @@ public class UsuarioController {
 				ModelAndView modelAndView = new ModelAndView("/telas/evento");
 				modelAndView.addObject("usuarioobj", usuario);
 				modelAndView.addObject("eventos", eventoRepository.eventos(codUsuario));
+				return modelAndView;
+			} catch (Exception e) {
+				e.getMessage();
+				throw e;
+			}
+			 
+		}
+		
+		@GetMapping("**/editarEvento/{codEvento}")
+		public ModelAndView editarEvento(@Valid Evento evento, @PathVariable("codEvento") Long codEvento) {
+			
+			try {
+				
+				Usuario usuario = eventoRepository.findById(codEvento).get().getUsuario(); 
+				ModelAndView modelAndView = new ModelAndView("/telas/evento");
+				modelAndView.addObject("usuarioobj", usuario);
+				modelAndView.addObject("eventos", eventoRepository.eventos(usuario.getCodUsuario()));
 				return modelAndView;
 			} catch (Exception e) {
 				e.getMessage();
