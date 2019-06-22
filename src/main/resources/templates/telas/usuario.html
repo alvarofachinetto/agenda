@@ -4,6 +4,7 @@
 		<title>Usuario</title>
 		<meta charset="UTF-8">
 		
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link type="text/css" rel="stylesheet" href="/materialize/css/materialize.css"  media="screen,projection"/>
 		<link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen,projection"/>
 		<style type="text/css">
@@ -12,6 +13,9 @@
 				margin: 0px;
 				background-color: #e0ffff;
 				font-family: tahoma;
+			}
+			table.striped>body>tr:nth-child(odd){
+				background-color: #fdf;
 			}
 			
 			th{
@@ -24,7 +28,7 @@
 			}
 		
 			h1{
-				padding: -4px;
+				margin: 0px; 
 				background-color: #7b68ee;
 				text-align: center;
 				font-size: 40px;
@@ -32,9 +36,7 @@
 				font-style: bold;
 			}
 			
-			input{
-				border-bottom: solid 1px;
-			}
+			
 		</style>
 	</head>
 	<body>
@@ -68,16 +70,25 @@
 					</div>
 					<div class="input-field col s2">	
 						<label for="idade" class="active">Idade: </label> 
-						<input name="idade" type="number" th:field="*{idade}" class="validate" required="required">
+						<input name="idade" type="number" th:field="*{idade}" min="18" max="110" class="validate" required="required">
 					</div>
 				</div>	
+				
+				<div class="row">
 					<div class="input-field col s6">
-						<input type="submit" value="Salvar">
-						<button id="novo" onclick="document.getElementById=('cadastro').reset();">Novo</button>
+						<button class="waves-effect waves-light btn-small" type="submit" name="action">Salvar</button>
 					</div>
-				
+				</div>
 			</form>
-				
+			
+			<div class="row">
+				<form action="pesquisar" method="post">
+					<label for="nomepesquisa" class="active">Pesquisa Por Nome:</label>
+					<input name="nomepesquisa" class="validate" id="nomepesquisa">	
+					<button class="waves-effect waves-light btn-small" type="submit" name="action">Pesquisar</button>
+						
+				</form>
+			</div>
 			<table>
 				<tr>
 					<th>Cod</th>

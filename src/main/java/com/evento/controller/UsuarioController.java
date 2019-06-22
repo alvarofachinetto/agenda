@@ -3,7 +3,6 @@ package com.evento.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.evento.model.Evento;
@@ -107,6 +107,21 @@ public class UsuarioController {
 		}
 		
 	}
+	@PostMapping("**/pesquisar")
+	public ModelAndView pesquisarUsuario(@RequestParam("nomepesquisa") String nome) {
+		try {
+			List<Usuario> usuarios = usuarioRepository.findByName(nome);
+			ModelAndView modelAndView = new ModelAndView("/telas/usuario");
+			modelAndView.addObject("usuarios", usuarios);
+			modelAndView.addObject("usuarioobj",new Usuario());
+
+			return modelAndView;
+		} catch (Exception e) {
+			e.getMessage();
+			throw e;
+		}
+		
+	}
 	
 	//editar usuario
 	@GetMapping("/editarusuario/{codUsuario}")
@@ -175,23 +190,7 @@ public class UsuarioController {
 			 
 		}
 		
-		@GetMapping("**/editarEvento/{codEvento}")
-		public ModelAndView editarEvento(@Valid Evento evento, @PathVariable("codEvento") Long codEvento) {
-			
-			try {
-				
-				Usuario usuario = eventoRepository.findById(codEvento).get().getUsuario(); 
-				ModelAndView modelAndView = new ModelAndView("/telas/evento");
-				modelAndView.addObject("usuarioobj", usuario);
-				modelAndView.addObject("eventos", eventoRepository.eventos(usuario.getCodUsuario()));
-				return modelAndView;
-			} catch (Exception e) {
-				e.getMessage();
-				throw e;
-			}
-			 
-		}
-		
+		//excluir evento
 		@GetMapping("**/removerEvento/{codEvento}")
 		public ModelAndView excluirEvento(@Valid Evento evento, @PathVariable("codEvento") Long codEvento) {
 			
@@ -211,4 +210,5 @@ public class UsuarioController {
 			 
 		}
 	
+		
 }

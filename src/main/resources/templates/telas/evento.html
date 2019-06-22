@@ -54,13 +54,14 @@
 	<br>
 	<br>
 	<div>
-			<form  th:action="@{/addEvento/{codUsuario}(codUsuario=${usuarioobj.codUsuario})}"  method="POST" class="col s12">
+			<form th:object="${eventoobj}" th:action="@{/addEvento/{codUsuario}(codUsuario=${usuarioobj.codUsuario})}"  method="POST" class="col s12">
 				<div class="row">
 					
 					<div class="input-field col s6">
-						<label for="nomeEvevnto" class="active">Evento</label> 
+						<label for="nomeEvento" class="active">Evento</label> 
 						<input name="nomeEvento" id="nomeEvento" class="validate" required="required">
 					</div>
+					
 					<div class="input-field col s3">
 						<label for="dataEvento" class="active">Data</label> 
 						<input name="dataEvento" type="date" id="dataEvento" class="validate" required="required">
@@ -79,13 +80,13 @@
 				
 				<div class="row">
 					<div class="input-field col s6">
-						<label for="descricao" class="active">Descrição do Evento</label>
-						<textarea name="descricao" id="descricaoEvento" class="validate"></textarea>
+						<label for="descricaoEvento" class="active">Descrição do Evento</label>
+						<textarea name="descricaoEvento" id="descricaoEvento" class="validate"></textarea>
 					</div>
 				</div>
 				
 					<div class="input-field col s3">
-						<input type="submit" value="salvar">
+						<a class="waves-effect waves-light btn-small"><input type="submit" value="salvar"></a> 
 					</div>
 				
 			</form>
@@ -98,7 +99,7 @@
 			<td th:text="${evento.nomePessoas}"/>
 			<td th:text="${evento.descricaoEvento}"/>
 			<td><a th:href="@{/removerEvento/{codEvento}(codEvento = ${evento.codEvento})}">Excluir</a></td>
-			<td><a th:href="@{/editarEvento/{codEvento}(codEvento = ${evento.codEvento})}">Editar</a></td>	
+				
 		</tr>
 	</table> 
 			
